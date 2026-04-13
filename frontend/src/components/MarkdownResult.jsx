@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function MarkdownResult({ markdown, onReset }) {
   const [copied, setCopied] = useState(false);
@@ -46,7 +47,7 @@ export default function MarkdownResult({ markdown, onReset }) {
 
       {/* Rendered markdown */}
       <div className="markdown-body bg-gray-900 border border-gray-800 rounded-xl p-8">
-        <ReactMarkdown>{markdown}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
       </div>
     </div>
   );

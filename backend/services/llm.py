@@ -2,19 +2,23 @@ import os
 
 import httpx
 
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-MODEL = os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini")
 
 
 async def call_llm(system_prompt: str, user_prompt: str) -> str:
     """Send a chat completion request to OpenRouter and return the text."""
+    api_key = os.getenv("OPENROUTER_API_KEY", "")
+    model = os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini")
+
+    if not api_key:
+        raise RuntimeError("OPENROUTER_API_KEY is not set — check your .env file")
+
     headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
     }
     payload = {
-        "model": MODEL,
+        "model": model,
         "messages": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
