@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* Markdown styling */
+.markdown-body h1 { @apply text-3xl font-bold mt-8 mb-4 text-white; }
+.markdown-body h2 { @apply text-2xl font-semibold mt-6 mb-3 text-white border-b border-gray-700 pb-2; }
+.markdown-body h3 { @apply text-xl font-semibold mt-4 mb-2 text-gray-200; }
+.markdown-body p { @apply mb-3 leading-relaxed text-gray-300; }
+.markdown-body ul { @apply list-disc list-inside mb-3 text-gray-300 space-y-1; }
+.markdown-body ol { @apply list-decimal list-inside mb-3 text-gray-300 space-y-1; }
+.markdown-body li { @apply ml-2; }
+.markdown-body code { @apply bg-gray-800 text-emerald-400 px-1.5 py-0.5 rounded text-sm; }
+.markdown-body pre { @apply bg-gray-800 p-4 rounded-lg mb-4 overflow-x-auto; }
+.markdown-body pre code { @apply bg-transparent p-0; }
+.markdown-body table { @apply w-full mb-4 border-collapse; }
+.markdown-body th { @apply text-left p-2 bg-gray-800 border border-gray-700 font-semibold; }
+.markdown-body td { @apply p-2 border border-gray-700; }
+.markdown-body a { @apply text-blue-400 hover:underline; }
+.markdown-body blockquote { @apply border-l-4 border-gray-600 pl-4 italic text-gray-400 mb-3; }
+.markdown-body strong { @apply text-white font-semibold; }
+
+/* Pulse animation for active agent */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
