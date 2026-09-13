@@ -30,3 +30,16 @@ export async function getResult(jobId) {
   }
   return res.json();
 }
+
+export async function sendChatMessage(jobId, message, history = []) {
+  const res = await fetch(`${API_BASE}chat/${jobId}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message, history }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || "Failed to send message");
+  }
+  return res.json();
+}

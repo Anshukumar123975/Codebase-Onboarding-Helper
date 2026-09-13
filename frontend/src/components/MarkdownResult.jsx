@@ -22,7 +22,7 @@ export default function MarkdownResult({ markdown, onReset }) {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full min-w-0">
       {/* Action bar */}
       <div className="flex gap-3 mb-6 justify-end">
         <button

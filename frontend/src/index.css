@@ -24,6 +24,13 @@ body {
 .markdown-body blockquote { @apply border-l-4 border-gray-600 pl-4 italic text-gray-400 mb-3; }
 .markdown-body strong { @apply text-white font-semibold; }
 
+.chat-message p { @apply mb-2 last:mb-0; }
+.chat-message ul { @apply list-disc pl-4 mb-2 space-y-1; }
+.chat-message ol { @apply list-decimal pl-4 mb-2 space-y-1; }
+.chat-message code { @apply bg-gray-950/60 px-1 py-0.5 rounded text-emerald-300; }
+.chat-message pre { @apply bg-gray-950 p-3 rounded-lg mb-2 overflow-x-auto; }
+.chat-message pre code { @apply bg-transparent p-0; }
+
 /* Pulse animation for active agent */
 @keyframes pulse-glow {
   0%, 100% { opacity: 1; }

@@ -123,7 +123,7 @@ export default function App() {
         />
       )}
       {view === VIEW.RESULT && (
-        <Result markdown={markdown} onReset={handleReset} />
+        <Result markdown={markdown} jobId={jobId} onReset={handleReset} />
       )}
     </div>
   );

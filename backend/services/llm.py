@@ -5,7 +5,7 @@ import httpx
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 
-async def call_llm(system_prompt: str, user_prompt: str) -> str:
+async def call_chat(messages: list[dict[str, str]], max_tokens: int = 4096) -> str:
     """Send a chat completion request to OpenRouter and return the text."""
     api_key = os.getenv("OPENROUTER_API_KEY", "")
     model = os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini")
@@ -19,11 +19,8 @@ async def call_llm(system_prompt: str, user_prompt: str) -> str:
     }
     payload = {
         "model": model,
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-        "max_tokens": 4096,
+        "messages": messages,
+        "max_tokens": max_tokens,
         "temperature": 0.3,
     }
     async with httpx.AsyncClient(timeout=120) as client:
@@ -33,3 +30,10 @@ async def call_llm(system_prompt: str, user_prompt: str) -> str:
             raise RuntimeError(f"OpenRouter {resp.status_code}: {body}")
         data = resp.json()
     return data["choices"][0]["message"]["content"]
+
+
+async def call_llm(system_prompt: str, user_prompt: str) -> str:
+    return await call_chat([
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_prompt},
+    ])

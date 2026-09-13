@@ -9,6 +9,7 @@ export default defineConfig({
       "/analyze": "http://localhost:8000",
       "/status": "http://localhost:8000",
       "/result": "http://localhost:8000",
+      "/chat": "http://localhost:8000",
     },
   },
 });
